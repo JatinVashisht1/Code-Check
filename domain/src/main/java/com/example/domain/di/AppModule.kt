@@ -1,15 +1,13 @@
-package com.example.di
+package com.example.domain.di
 
-import com.example.core.Constants
 import com.example.data.remote.repository.CFRepo
 import com.example.data.remote.repository.CFRepoImpl
 import com.example.data.remote.repository.CodeforcesApi
+import com.example.domain.use_cases.use_case_user_rating.UseCaseUserRating
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
 @Module
@@ -17,9 +15,7 @@ import javax.inject.Singleton
 object AppModule {
     @Provides
     @Singleton
-    fun provideApi(): CodeforcesApi = Retrofit.Builder()
-        .addConverterFactory(GsonConverterFactory.create())
-        .baseUrl(Constants.BASE_URL)
-        .build()
-        .create(CodeforcesApi::class.java)
+    fun providesRepository(api: CodeforcesApi): CFRepo = CFRepoImpl(api = api)
+
+    fun providesUseCaseRating(repository: CFRepoImpl) : UseCaseUserRating = UseCaseUserRating(repository = repository)
 }
