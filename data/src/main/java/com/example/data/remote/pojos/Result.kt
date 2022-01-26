@@ -1,4 +1,4 @@
-package com.example.data.remote.dto.dto_user_rating
+package com.example.data.remote.pojos
 
 
 import com.google.gson.annotations.SerializedName
