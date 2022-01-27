@@ -1,9 +1,10 @@
 package com.example.domain.di
 
-import com.example.data.remote.repository.CFRepo
-import com.example.data.remote.repository.CFRepoImpl
-import com.example.data.remote.repository.CodeforcesApi
+import com.example.domain.CFRepo
+import com.example.domain.use_cases.UseCaseGod
+import com.example.domain.use_cases.use_case_contest_status.UseCaseContestStatus
 import com.example.domain.use_cases.use_case_user_rating.UseCaseUserRating
+import com.example.domain.use_cases.use_case_user_status.UseCaseUserStatus
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -15,7 +16,9 @@ import javax.inject.Singleton
 object AppModule {
     @Provides
     @Singleton
-    fun providesRepository(api: CodeforcesApi): CFRepo = CFRepoImpl(api = api)
-
-    fun providesUseCaseRating(repository: CFRepoImpl) : UseCaseUserRating = UseCaseUserRating(repository = repository)
+    fun provideGodUseCase(repo: CFRepo) : UseCaseGod = UseCaseGod(
+        useCaseContestStatus = UseCaseContestStatus(repo = repo),
+        useCaseUserRating = UseCaseUserRating(repo = repo),
+        useCaseUserStatus = UseCaseUserStatus(repo = repo)
+    )
 }

@@ -1,5 +1,7 @@
 package com.example.data.remote.pojos
 
+import com.example.domain.model.ProblemUserStatus
+
 data class Problem(
     val contestId: Int,
     val index: String,
@@ -7,4 +9,12 @@ data class Problem(
     val rating: Int,
     val tags: List<String>,
     val type: String
+)
+
+fun Problem.toProblemUserStatus() : ProblemUserStatus = ProblemUserStatus(
+    contestId = contestId,
+    index = index,
+    rating = rating,
+    tags = tags,
+    type = type
 )

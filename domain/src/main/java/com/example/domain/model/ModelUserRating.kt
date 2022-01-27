@@ -1,6 +1,6 @@
 package com.example.domain.model
 
-import com.example.di.AppModule
+//import com.example.di.AppModule
 
 data class ModelUserRating(
     val contestId: Int = 0,

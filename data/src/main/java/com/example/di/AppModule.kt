@@ -1,9 +1,10 @@
 package com.example.di
 
 import com.example.core.Constants
-import com.example.data.remote.repository.CFRepo
 import com.example.data.remote.repository.CFRepoImpl
 import com.example.data.remote.repository.CodeforcesApi
+import com.example.domain.CFRepo
+//import com.example.domain.CFRepo
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -22,4 +23,8 @@ object AppModule {
         .baseUrl(Constants.BASE_URL)
         .build()
         .create(CodeforcesApi::class.java)
+
+    @Provides
+    @Singleton
+    fun providesRepository(api: CodeforcesApi): CFRepo = CFRepoImpl(api = api)
 }

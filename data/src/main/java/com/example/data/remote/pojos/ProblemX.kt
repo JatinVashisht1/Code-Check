@@ -1,5 +1,7 @@
 package com.example.data.remote.pojos
 
+import com.example.domain.model.ProblemContestStatus
+
 data class ProblemX(
     val contestId: Int,
     val index: String,
@@ -8,4 +10,14 @@ data class ProblemX(
     val rating: Int,
     val tags: List<String>,
     val type: String
+)
+
+fun ProblemX.toProblemContentStatus(): ProblemContestStatus = ProblemContestStatus(
+    contestId,
+    index,
+    name,
+    points,
+    rating,
+    tags,
+    type
 )
