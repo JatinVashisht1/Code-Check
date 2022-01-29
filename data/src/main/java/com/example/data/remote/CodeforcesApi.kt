@@ -1,9 +1,10 @@
-package com.example.data.remote.repository
+package com.example.data.remote
 
 import com.example.data.remote.pojos.ContestList
 import com.example.data.remote.pojos.ContestStatus
 import com.example.data.remote.pojos.DtoUserRating
 import com.example.data.remote.pojos.UserStatus
+import com.example.data.remote.pojos.dto_user_info.DtoUserInfo
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -38,6 +39,11 @@ interface CodeforcesApi {
 
     @GET("contest.list?")//By default gym is not returned
     suspend fun getContestList() : ContestList
+
+    @GET("user.info?")
+    suspend fun getUserInfo(
+        @Query("handles") handles: String
+    ) : DtoUserInfo
 
     //todo : try to lessen POJO classes if possible
 

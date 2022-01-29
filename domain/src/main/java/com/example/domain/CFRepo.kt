@@ -1,9 +1,6 @@
 package com.example.domain
 
-import com.example.domain.model.ModelContestList
-import com.example.domain.model.ModelContestStatus
-import com.example.domain.model.ModelUserRating
-import com.example.domain.model.ModelUserStatus
+import com.example.domain.model.*
 
 //@InstallIn(SingletonComponent::class)
 //@EntryPoint
@@ -16,4 +13,6 @@ interface CFRepo {
     suspend fun getContestStatus(contestId: Int, from: Int, count: Int) : ModelContestStatus
 
     suspend fun getContestList() : ModelContestList
+
+    suspend fun getUserInfo(handles: String) : ModelUserInfo
 }

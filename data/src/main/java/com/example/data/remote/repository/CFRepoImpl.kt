@@ -1,11 +1,10 @@
 package com.example.data.remote.repository
 
+import com.example.data.remote.CodeforcesApi
 import com.example.data.remote.pojos.*
+import com.example.data.remote.pojos.dto_user_info.toModelUserInfo
 import com.example.domain.CFRepo
-import com.example.domain.model.ModelContestList
-import com.example.domain.model.ModelContestStatus
-import com.example.domain.model.ModelUserRating
-import com.example.domain.model.ModelUserStatus
+import com.example.domain.model.*
 
 class CFRepoImpl(private val api: CodeforcesApi) : CFRepo {
     override suspend fun getUserRating(userHandle: String): List<ModelUserRating> {
@@ -55,5 +54,10 @@ class CFRepoImpl(private val api: CodeforcesApi) : CFRepo {
     override suspend fun getContestList(): ModelContestList  {
         val data = api.getContestList()
         return data.toModelContestList()
+    }
+
+    override suspend fun getUserInfo(handles: String): ModelUserInfo {
+        val data = api.getUserInfo(handles = handles)
+        return data.toModelUserInfo()
     }
 }

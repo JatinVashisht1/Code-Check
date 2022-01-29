@@ -41,8 +41,11 @@ class MainViewModel @Inject constructor(
             Log.d(Constants.VIEWMODEL_TAG, "Data in viewModel (contest status) ${it.data?.resultContestStatuses.toString()}")
         }.launchIn(viewModelScope)
 
-        val god = god.useCaseContestStatus(contestId = 566, from = 1, count = 10).onEach {
-            Log.d(Constants.VIEWMODEL_TAG, "Data in viewModel (god use case) ${it.data?.resultContestStatuses.toString()}")
+        val god = god.useCaseUserInfo(handles="Fefer_Ivan").onEach {
+            Log.d(Constants.VIEWMODEL_TAG, "Data in viewModel (god use case) ${it.data?.result.toString()}")
+            Log.d(Constants.VIEWMODEL_TAG, "Data in viewModel [use case user info] (god use case) ${it.data?.result.toString()}")
         }.launchIn(viewModelScope)
+
+
     }
 }

@@ -2,7 +2,7 @@ package com.example.di
 
 import com.example.core.Constants
 import com.example.data.remote.repository.CFRepoImpl
-import com.example.data.remote.repository.CodeforcesApi
+import com.example.data.remote.CodeforcesApi
 import com.example.domain.CFRepo
 //import com.example.domain.CFRepo
 import dagger.Module
